@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+		
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dip"      
+        android:background="#80ffffff"      
+        android:id="@+id/layInfo">
+
+            <TextView
+                android:id="@+id/txtAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carrey Group"
+                android:textColor="#333333"
+                android:textSize="18dp" />    
+               
+            <TextView android:id="@+id/txtEMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"   
+                android:layout_below="@id/txtAuthor"
+                android:autoLink="web"
+                android:text="EMail:2499920026@qq.com "
+                android:textSize="18dp"
+                android:textColor="#333333"/>  
+                
+            <TextView
+                android:id="@+id/txtCopyright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtEMail"
+                android:layout_marginTop="16dip"
+                android:text="©Carrey Group . 版权所有."
+                android:textColor="#333333"
+                android:textSize="16dp" />
+
+            <TextView android:id="@+id/txtVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"   
+                android:layout_below="@id/txtCopyright"
+                android:layout_marginTop="16dip"
+                android:text=""
+                android:textSize="14dp"
+                android:textColor="#333333"/>  
+ 
+            <TextView android:id="@+id/txtMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"   
+                android:layout_below="@id/txtVersion"
+                android:layout_marginTop="16dip"
+                android:text="Power by Caesar Works!"
+                android:textSize="14dp"
+                android:textColor="#333333"/>                           
+    </RelativeLayout>
+       
+</RelativeLayout>

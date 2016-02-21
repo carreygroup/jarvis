@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/wallpaper"> 
+    
+    <include layout="@layout/header" android:id="@+id/header" />
+
+    <LinearLayout android:id="@+id/container" 
+        android:orientation="vertical"
+    	android:measureAllChildren="true" 
+        android:layout_weight="1" 
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent" 
+        android:layout_below="@id/header"
+        android:paddingBottom="50dip">
+    </LinearLayout>
+
+    <RelativeLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_toolbar"
+        android:tileMode="repeat">
+        <TextView
+            android:id="@+id/btnHome"
+            android:text="首页"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ico_tb_home"
+            android:layout_alignParentLeft="true"
+            android:layout_width="80dip"
+            android:layout_height="50dip">
+        </TextView>
+        <TextView
+            android:id="@+id/btnScenes"
+            android:text="场景"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ico_tb_group"
+            android:layout_toRightOf="@id/btnHome"
+            android:layout_width="80dip"
+            android:layout_height="50dip">
+        </TextView>
+        <TextView android:id="@+id/btnItems"
+            android:text="配置"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ico_tb_setup"
+            android:layout_toRightOf="@id/btnScenes"
+            android:layout_width="80dip"
+            android:layout_height="50dip">
+        </TextView>
+        <TextView android:id="@+id/btnAbout"
+            android:text="关于"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/ico_tb_about"
+            android:layout_toRightOf="@id/btnItems"
+            android:layout_width="80dip"
+            android:layout_height="50dip">
+        </TextView>
+    </RelativeLayout>
+    
+   <RelativeLayout android:id="@+id/layConnect"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="200dip"
+	    android:layout_alignParentBottom="true"
+	    android:paddingLeft="5dip"
+	    android:paddingRight="5dip"
+	    android:paddingTop="3dip"
+	    android:background="@drawable/bg_connect"
+	    android:visibility="gone">
+        
+		<LinearLayout android:orientation="vertical"
+		    android:layout_width="fill_parent"        
+		    android:layout_height="fill_parent"
+		    android:paddingLeft="5dip"
+		    android:paddingRight="5dip"
+		    android:paddingTop="5dip">
+		    
+		    <RadioGroup android:id="@+id/EthnetGroup"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:orientation="horizontal"
+				android:layout_marginLeft="10dp"
+			    android:layout_marginRight="10dp">
+			    
+			    <RadioButton
+			        android:id="@+id/rbTCP"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="10dp"
+			        android:layout_marginRight="10dp"
+			        android:tag="0"
+			        android:text="TCP方式" />
+
+			    <RadioButton
+			        android:id="@+id/rbUDP"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="10dp"
+			        android:layout_marginRight="50dp"
+			        android:tag="1"
+			        android:text="UDP方式" />
+			</RadioGroup>  
+				
+			<TextView android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="50dip"
+			    android:textColor="@color/red"
+			    android:text="以太网地址："/>
+		    <EditText android:id="@+id/edtIP" 
+		        android:layout_width="fill_parent"
+	        	android:layout_height="wrap_content"
+	        	android:layout_marginLeft="10dip"
+	        	android:layout_marginRight="10dip"
+	        	android:text="@string/connect_desc">
+		    </EditText>
+<!-- 		    <EditText android:id="@+id/edtIP" 
+		        android:layout_width="fill_parent"
+	        	android:layout_height="wrap_content"
+	        	android:layout_marginLeft="10dip"
+	        	android:layout_marginRight="10dip"
+	        	android:inputType="number"
+	        	android:digits="0123456789."
+	        	android:text="@string/connect_desc">
+		    </EditText> -->
+		    <TextView android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_marginRight="50dip"
+			    android:textColor="@color/red"
+			    android:text="端口："/>
+		    <RelativeLayout
+			    android:orientation="vertical"
+			    android:layout_width="fill_parent"
+			    android:layout_height="50dip"
+			    android:layout_alignParentBottom="true"
+			    android:paddingLeft="5dip"
+			    android:paddingRight="5dip"
+			    android:paddingTop="3dip" >
+			    <EditText android:id="@+id/edtPort" 
+			        android:layout_width="fill_parent"
+		        	android:layout_height="wrap_content"
+		        	android:layout_marginLeft="10dip"
+		        	android:layout_marginRight="50dip"
+		        	android:inputType="number"
+		        	android:text="@string/port_desc">
+			    </EditText>		    
+		       	<Button android:id="@+id/btnConnect"
+		       		android:layout_width="wrap_content"
+		        	android:layout_height="wrap_content"
+		        	android:layout_alignParentRight="true"
+		        	android:text="  连接  ">
+		       	</Button>
+	       	</RelativeLayout>  
+		</LinearLayout>  	
+	</RelativeLayout>  
+</RelativeLayout>

@@ -1,0 +1,220 @@
+/*
+ * This file is part of JARVIS
+ * COPYRIGHT (C) 2008 - 2016, Carrey Group
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License along
+ *  with this program; if not, write to the Free Software Foundation, Inc.,
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 20014-01-01     Caesar      the first version
+ */
+package com.carreygroup.JARVIS;
+
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
+
+import android.os.Message;
+import android.util.Log;
+
+/**
+ *
+ * @author firefish
+ */
+public class TCP 
+{
+    /** 数据缓冲区大小**/
+    private SocketChannel 					mSocket 		= null;
+    private SocketAddress 					mAddress		= null;
+    private ArrayList<ConnectionListener>	mConnListeners	= new ArrayList<ConnectionListener>();
+    private boolean							mConnected	= false;
+    private BufferedInputStream mBufferedReaderClient	= null;
+    
+    private Thread mThreadClient = null;
+    /**
+     * 网络连接状态观察者
+     * @author firefish
+     *
+     */
+    public interface ConnectionListener
+    {
+    	public void onConnected(TCP connection);
+    	public void onDisconnected();
+    } 
+
+    public TCP() throws IOException
+    {    	
+        System.setProperty("java.net.preferIPv6Addresses", "false");
+    } 
+    
+    public void addListener(ConnectionListener listener)
+    {
+    	mConnListeners.add(listener);
+    	if(isConnected())
+    	{
+    		listener.onConnected(this);
+    	}
+    }
+    
+    public SocketChannel getSocket()
+    {
+    	return mSocket;    	
+    }
+    
+    public boolean Connect(String strIP,int port) throws IOException
+    {
+    	mAddress = new InetSocketAddress(strIP, port);    	
+    	mSocket = SocketChannel.open();
+    	mSocket.socket().connect(mAddress, 5000);
+    	mSocket.configureBlocking(false); 
+    	mConnected = true;
+    	
+		if(mSocket.isConnected())
+		{
+			for(ConnectionListener listener : mConnListeners)
+			{
+				listener.onConnected(this);
+			}
+		}
+		
+		return mSocket.isConnected();
+		// 开启线程定时发送连接检测 
+		// new Thread(new ActiveTest(mSocket.socket())).start();
+    }
+/*
+    public void Connect_Async(String strIP,int port) throws IOException
+    {
+    	mAddress = new InetSocketAddress(strIP, port);    	
+    	mSocket = SocketChannel.open();
+    	mSocket.socket().connect(mAddress, 5000);
+    	mSocket.configureBlocking(false); 
+    	mConnected = true;
+    	
+    	if(mSocket.isConnected())
+    	{
+    		mBufferedReaderClient = new BufferedInputStream(new DataInputStream(mSocket.socket().getInputStream()));
+    		mThreadClient = new Thread(mRunnable);
+    		mThreadClient.start();
+    	}
+
+    }
+*/
+	
+    public byte[] Send_Sync(Packet p) throws IOException
+    {
+    	ByteBuffer bytebufOut = ByteBuffer.allocate(Ethnet.BUFFER_SIZE); 
+    	bytebufOut = ByteBuffer.wrap(p.toByteArray()); 
+    	try 
+    	{
+			mSocket.write(bytebufOut);
+		} 
+    	catch (IOException e) 
+		{
+			mConnected = false;
+			notifyDisconnected();
+			throw new IOException("发送数据失败，网络连接已断开。");
+		} 
+    	bytebufOut.flip();
+    	bytebufOut.clear();
+    	    
+    	// 读取返回数据 	
+        boolean stop = false;
+        int ready = 0;
+        int readLen = 0;
+        int count = 0;
+        ByteBuffer bytebufIn = ByteBuffer.allocate(Ethnet.BUFFER_SIZE);        
+    	
+        Selector selector = Selector.open();
+        mSocket.register(selector, SelectionKey.OP_READ);        
+        // 轮询
+        while (!stop) 
+        {			
+        	if(ready == 0)
+        	{
+        		// 获取Selector返回的事件
+        		ready = selector.select(1000);
+        		count++;
+        	}
+        	if(count == 5)
+        	{
+    			mConnected = false;
+    			notifyDisconnected();
+        		throw new IOException();
+        	}
+			if (ready > 0)
+			{
+				readLen = mSocket.read(bytebufIn);
+				if(readLen == 0)
+					stop = true;
+			}
+        }
+        selector.close();
+        
+        return bytebufIn.array();
+    }
+
+    public boolean Send_Async(Packet p) throws IOException
+    {
+    	boolean ret=false;
+    	ByteBuffer bytebufOut = ByteBuffer.allocate(Ethnet.BUFFER_SIZE); 
+    	bytebufOut = ByteBuffer.wrap(p.toByteArray()); 
+    	try 
+    	{
+			mSocket.write(bytebufOut);
+			ret=true;
+		} 
+    	catch (IOException e) 
+		{
+			mConnected = false;
+			notifyDisconnected();
+			throw new IOException("发送数据失败，网络连接已断开。");			
+		} 
+    	bytebufOut.flip();
+    	bytebufOut.clear();
+    	return ret;
+    }
+    
+    public void close() throws IOException
+    {
+    	mSocket.socket().shutdownOutput();
+        mSocket.close();
+        mConnected = false;
+        
+        notifyDisconnected();
+    }
+    
+    public boolean isConnected()
+    {
+    	return mConnected;
+    }
+    
+	private void notifyDisconnected() 
+	{
+		for(ConnectionListener listener : mConnListeners)
+		{
+			listener.onDisconnected();
+		}
+	}    
+}

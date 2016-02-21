@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"                
+	android:layout_width="fill_parent"       
+	android:layout_height="fill_parent"
+	android:layout_centerHorizontal="true">
+	<ImageView android:id="@+id/Icon"
+	        android:layout_height="200px"
+	        android:layout_width="fill_parent"
+	        android:gravity="center_horizontal"
+	        android:src="@drawable/btn_light_off"/>
+	<RelativeLayout android:layout_width="fill_parent"       
+		android:layout_height="fill_parent"
+		android:layout_below="@id/Icon"
+		android:layout_centerHorizontal="true"
+		android:gravity="center_horizontal">
+		<ImageView android:id="@+id/Timer"
+		        android:layout_height="wrap_content"
+		        android:layout_width="wrap_content"
+		        android:src="@drawable/ico_timer"
+		        android:visibility="gone"/> 
+		<TextView android:id="@+id/ItemName"
+		        android:layout_height="wrap_content"
+		        android:layout_width="wrap_content"
+		        android:layout_toRightOf="@id/Timer"  		                   
+		        android:textSize="16dp"
+		        android:textColor="#ff00ff00" /> 
+	</RelativeLayout>	         
+</RelativeLayout>

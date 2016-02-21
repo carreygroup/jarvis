@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="fill_parent"        
+       android:layout_height="fill_parent"        
+       android:padding="5dip" 
+       android:descendantFocusability="blocksDescendants">
+       <TextView android:id="@+id/SceneName" 
+		android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+		android:textSize="20dp"   
+		android:textColor="#333333" 
+		android:focusable="false"/>
+		
+        <RelativeLayout android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" 
+            android:layout_marginRight="7dip">            
+            <TextView android:id="@+id/Execute"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=" 执  行  "
+                android:textColor="#ffffff" 
+                android:background="@drawable/bg_btn_group_left_on"/>
+            <TextView android:id="@+id/Delete"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/Execute"
+                android:gravity="center_horizontal"
+                android:text="删除 "
+                android:textColor="#ffffff"
+                android:background="@drawable/btn_group_right"/>
+        </RelativeLayout>                 
+</RelativeLayout>

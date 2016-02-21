@@ -1,0 +1,8 @@
+com.carreygroup.JARVIS.BaseActivity
+com.carreygroup.JARVIS.HomeActivity
+com.carreygroup.JARVIS.GroupActivity
+com.carreygroup.JARVIS.SetupActivity
+com.carreygroup.JARVIS.AboutActivity
+com.mobclick.android.UmengFeedback
+com.carreygroup.JARVIS.MainActivity
+com.carreygroup.JARVIS.MyApplication

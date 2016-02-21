@@ -1,0 +1,501 @@
+com.mobclick.android.MobclickAgent -> com.mobclick.android.b:
+    com.mobclick.android.MobclickAgent a -> a
+    int j -> b
+    android.content.Context k -> c
+    android.os.Handler l -> d
+    boolean IMEI_MD5 -> e
+    boolean LOCATION_OPEN -> f
+    java.lang.String m -> g
+    java.lang.String n -> h
+    boolean o -> i
+    com.mobclick.android.UmengUpdateListener p -> j
+    com.mobclick.android.UmengFeedbackListener q -> k
+    boolean r -> l
+    org.json.JSONObject s -> m
+    boolean updateAutoPopup -> n
+    void onPause(android.content.Context) -> a
+    void onResume(android.content.Context) -> b
+    void onError(android.content.Context) -> c
+    java.lang.String a(android.content.Context) -> d
+    java.lang.String b(android.content.Context) -> e
+    java.lang.String c(android.content.Context) -> f
+    void onFeedbackReturned(org.json.JSONObject) -> a
+    java.lang.String d(android.content.Context) -> g
+    void a$62dc3a79(android.content.Context,java.lang.String) -> a
+    void e(android.content.Context) -> h
+    void a(android.content.Context,org.json.JSONObject) -> c
+    void a$182ca992(android.content.Context,java.lang.String,java.lang.String,int) -> a
+    void b$5ffc00fd(android.content.Context) -> i
+    android.app.AlertDialog d(android.content.Context,org.json.JSONObject) -> d
+    boolean a(java.lang.String,android.content.Context) -> a
+    java.lang.String a(android.content.Context,org.json.JSONObject,java.lang.String) -> a
+    java.lang.String a(java.io.InputStream) -> a
+    org.json.JSONObject h(android.content.Context) -> j
+    void i(android.content.Context) -> k
+    java.lang.String a(java.lang.String) -> a
+    org.json.JSONObject j(android.content.Context) -> l
+    android.content.SharedPreferences l(android.content.Context) -> m
+    android.content.SharedPreferences m(android.content.Context) -> n
+    java.lang.String o(android.content.Context) -> o
+    java.lang.String b() -> b
+    java.lang.String[] q(android.content.Context) -> p
+    com.mobclick.android.MobclickAgent a() -> a
+    void a$4bdae0f6(android.content.Context,org.json.JSONObject) -> a
+    void b$4bdae0f6(android.content.Context,org.json.JSONObject) -> b
+    void a(com.mobclick.android.MobclickAgent,android.content.Context) -> a
+    void a$7e5fd124(com.mobclick.android.MobclickAgent,android.content.Context,java.lang.String) -> a
+    void a$3c668592(com.mobclick.android.MobclickAgent,android.content.Context) -> b
+    void a$2c2631e3(com.mobclick.android.MobclickAgent,android.content.Context,java.lang.String,java.lang.String,int) -> a
+com.mobclick.android.UmengFeedback -> com.mobclick.android.UmengFeedback:
+    android.widget.Spinner a -> a
+    android.widget.Spinner b -> b
+    android.widget.EditText c -> c
+    java.lang.String d -> d
+    com.mobclick.android.e e -> e
+    android.content.Context f -> f
+    org.json.JSONObject g -> g
+    org.json.JSONObject a(int,int,java.lang.String) -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    int a(android.content.Context,java.lang.String,java.lang.String) -> a
+    android.widget.Spinner a(com.mobclick.android.UmengFeedback) -> a
+    android.widget.Spinner b(com.mobclick.android.UmengFeedback) -> b
+    android.widget.EditText c(com.mobclick.android.UmengFeedback) -> c
+    org.json.JSONObject a(com.mobclick.android.UmengFeedback,int,int,java.lang.String) -> a
+    void a(com.mobclick.android.UmengFeedback,org.json.JSONObject) -> a
+    com.mobclick.android.e a() -> a
+    org.json.JSONObject d(com.mobclick.android.UmengFeedback) -> d
+com.mobclick.android.UmengFeedbackListener -> com.mobclick.android.c:
+com.mobclick.android.UmengUpdateListener -> com.mobclick.android.a:
+com.mobclick.android.a -> com.mobclick.android.g:
+    android.content.Context a -> a
+    int b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    android.app.Notification f -> f
+    android.app.NotificationManager g -> g
+    int h -> h
+    java.lang.String i -> i
+    java.lang.String j -> j
+    boolean k -> k
+    boolean l -> l
+    int m -> m
+    android.os.Handler n -> n
+    int a(java.lang.String,java.lang.String) -> a
+    void b() -> a
+    boolean d() -> b
+    java.lang.String a(com.mobclick.android.a) -> a
+    java.lang.String b(com.mobclick.android.a) -> b
+    android.content.Context c(com.mobclick.android.a) -> c
+    void a$54465278(com.mobclick.android.a) -> d
+    int d(com.mobclick.android.a) -> e
+    boolean e(com.mobclick.android.a) -> f
+    void b(com.mobclick.android.a,boolean) -> a
+com.mobclick.android.b -> com.mobclick.android.f:
+    com.mobclick.android.a a -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.mobclick.android.c -> com.mobclick.android.e:
+    com.mobclick.android.a a -> a
+    void run() -> run
+com.mobclick.android.d -> com.mobclick.android.d:
+    int a -> a
+    int b -> b
+    int c -> c
+com.mobclick.android.e -> com.mobclick.android.k:
+    void onFeedbackReturned(org.json.JSONObject) -> a
+com.mobclick.android.f -> com.mobclick.android.j:
+    android.location.LocationManager a -> a
+    android.content.Context b -> b
+    android.location.Location a() -> a
+com.mobclick.android.g -> com.mobclick.android.i:
+    android.content.Context a -> a
+    java.lang.String b -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.mobclick.android.h -> com.mobclick.android.h:
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.mobclick.android.i -> com.mobclick.android.n:
+    java.lang.Object a -> a
+    android.content.Context b -> b
+    int c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    int h -> h
+    void run() -> run
+com.mobclick.android.j -> com.mobclick.android.o:
+    java.lang.Object a -> a
+    com.mobclick.android.MobclickAgent b -> b
+    android.content.Context c -> c
+    org.json.JSONObject d -> d
+    void run() -> run
+com.mobclick.android.k -> com.mobclick.android.l:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    java.lang.String h -> h
+    java.lang.String i -> i
+    java.lang.String j -> j
+    java.lang.String k -> k
+    java.lang.String[] l -> l
+    java.lang.String[] m -> m
+    java.lang.String[] n -> n
+    java.lang.String[] o -> o
+    java.lang.String p -> p
+    java.lang.String q -> q
+    java.lang.String r -> r
+    java.lang.String s -> s
+    java.lang.String t -> t
+    java.lang.String u -> u
+    java.lang.String v -> v
+    java.lang.String w -> w
+    java.lang.String x -> x
+    java.lang.String y -> y
+    java.lang.String z -> z
+    java.lang.String A -> A
+    java.lang.String B -> B
+    java.lang.String C -> C
+    java.lang.String a(android.content.Context) -> a
+    java.lang.String b(android.content.Context) -> b
+    java.lang.String c(android.content.Context) -> c
+    java.lang.String d(android.content.Context) -> d
+    java.lang.String[] f(android.content.Context) -> e
+    java.lang.String[] g(android.content.Context) -> f
+    java.lang.String h(android.content.Context) -> g
+    java.lang.String i(android.content.Context) -> h
+    java.lang.String j(android.content.Context) -> i
+    java.lang.String k(android.content.Context) -> j
+    java.lang.String l(android.content.Context) -> k
+    java.lang.String m(android.content.Context) -> l
+    java.lang.String n(android.content.Context) -> m
+    java.lang.String A() -> a
+com.mobclick.android.l -> com.mobclick.android.m:
+    boolean a(android.content.Context,java.lang.String) -> a
+    java.lang.String a() -> a
+com.mobclick.android.m -> com.mobclick.android.p:
+    com.mobclick.android.UmengFeedback a -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.AboutActivity -> com.carreygroup.JARVIS.AboutActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    java.lang.String getVersion() -> a
+com.carreygroup.JARVIS.BaseActivity -> com.carreygroup.JARVIS.BaseActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.GroupActivity -> com.carreygroup.JARVIS.GroupActivity:
+    java.util.ArrayList mGroups -> a
+    java.util.ArrayList mLines -> b
+    android.widget.ListView lvGroup -> c
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter mAdapter -> d
+    com.carreygroup.JARVIS.MyApplication mApp -> e
+    com.carreygroup.JARVIS.TCP mTcp -> f
+    com.carreygroup.JARVIS.Protocol mProtocol -> g
+    void onCreate(android.os.Bundle) -> onCreate
+    void onDestroy() -> onDestroy
+    void onConnected(com.carreygroup.JARVIS.TCP) -> a
+    void onDisconnected() -> a
+    java.util.ArrayList access$0(com.carreygroup.JARVIS.GroupActivity) -> a
+    void access$1(com.carreygroup.JARVIS.GroupActivity,boolean) -> a
+    com.carreygroup.JARVIS.MyApplication access$3(com.carreygroup.JARVIS.GroupActivity) -> b
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter access$4(com.carreygroup.JARVIS.GroupActivity) -> c
+    java.util.ArrayList access$5(com.carreygroup.JARVIS.GroupActivity) -> d
+com.carreygroup.JARVIS.GroupActivity$1 -> com.carreygroup.JARVIS.p:
+    com.carreygroup.JARVIS.GroupActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter -> com.carreygroup.JARVIS.k:
+    android.view.LayoutInflater mInflater -> b
+    com.carreygroup.JARVIS.GroupActivity this$0 -> a
+    long getItemId(int) -> getItemId
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$1 -> com.carreygroup.JARVIS.ac:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter this$1 -> a
+    int val$position -> b
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$2 -> com.carreygroup.JARVIS.ab:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter this$1 -> a
+    int val$position -> b
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$2$1 -> com.carreygroup.JARVIS.ai:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter$2 this$2 -> a
+    int val$position -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$2$2 -> com.carreygroup.JARVIS.ah:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter$2 this$2 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$3 -> com.carreygroup.JARVIS.aa:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter this$1 -> a
+    int val$position -> b
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$3$1 -> com.carreygroup.JARVIS.am:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter$3 this$2 -> a
+    int val$position -> b
+    android.widget.EditText val$edtName -> c
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$3$2 -> com.carreygroup.JARVIS.an:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter$3 this$2 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$4 -> com.carreygroup.JARVIS.z:
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter this$1 -> a
+    int val$position -> b
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.GroupActivity$MyAdapter$ViewHolder -> com.carreygroup.JARVIS.o:
+    android.widget.TextView Name -> a
+    android.widget.TextView[] LineNames -> b
+    android.widget.TextView[] LineStatus -> c
+    android.widget.TextView Execute -> d
+    android.widget.TextView Delete -> e
+    com.carreygroup.JARVIS.GroupActivity$MyAdapter this$1 -> f
+com.carreygroup.JARVIS.GroupInfo -> com.carreygroup.JARVIS.af:
+    byte id -> a
+    java.lang.String name -> b
+    byte[] status -> c
+    byte getID() -> a
+    java.lang.String getName() -> b
+    void setName(java.lang.String) -> a
+    byte getStatus(int) -> a
+    void setStatus(int,byte) -> a
+com.carreygroup.JARVIS.HomeActivity -> com.carreygroup.JARVIS.HomeActivity:
+    java.util.ArrayList mItems -> a
+    com.carreygroup.JARVIS.HomeActivity$MyAdapter mAdapter -> b
+    com.carreygroup.JARVIS.TCP mTcp -> c
+    com.carreygroup.JARVIS.MyApplication mApp -> d
+    com.carreygroup.JARVIS.Protocol mProtocol -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void updateStatus() -> b
+    void onConnected(com.carreygroup.JARVIS.TCP) -> a
+    void onDisconnected() -> a
+    com.carreygroup.JARVIS.TCP access$0(com.carreygroup.JARVIS.HomeActivity) -> a
+    com.carreygroup.JARVIS.HomeActivity$MyAdapter access$1(com.carreygroup.JARVIS.HomeActivity) -> b
+    com.carreygroup.JARVIS.Protocol access$2(com.carreygroup.JARVIS.HomeActivity) -> c
+    java.util.ArrayList access$3(com.carreygroup.JARVIS.HomeActivity) -> d
+com.carreygroup.JARVIS.HomeActivity$MyAdapter -> com.carreygroup.JARVIS.e:
+    android.view.LayoutInflater m_Inflater -> b
+    com.carreygroup.JARVIS.HomeActivity this$0 -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void turn(char[]) -> a
+com.carreygroup.JARVIS.HomeActivity$MyAdapter$ViewHolder -> com.carreygroup.JARVIS.r:
+    android.widget.TextView Name -> a
+    android.widget.ImageView Icon -> b
+    android.widget.ImageView Timer -> c
+    com.carreygroup.JARVIS.HomeActivity$MyAdapter this$1 -> d
+com.carreygroup.JARVIS.HomeActivity$OnItemClicked -> com.carreygroup.JARVIS.aj:
+    com.carreygroup.JARVIS.HomeActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.carreygroup.JARVIS.ItemInfo -> com.carreygroup.JARVIS.ae:
+    byte id -> a
+    java.lang.String name -> b
+    boolean status -> c
+    int icon -> d
+    java.lang.String timerOn -> e
+    java.lang.String timerOff -> f
+    int[] ICONS -> g
+    byte GetID() -> a
+    java.lang.String GetName() -> b
+    void SetName(java.lang.String) -> a
+    boolean GetStatus() -> c
+    void SetStatus(boolean) -> a
+    int GetIcon() -> d
+    void SetIcon(int) -> a
+    int GetIconResId() -> e
+    java.lang.String GetTimerOn() -> f
+    void SetTimerOn(java.lang.String) -> b
+    java.lang.String GetTimerOff() -> g
+    void SetTimerOff(java.lang.String) -> c
+com.carreygroup.JARVIS.MainActivity -> com.carreygroup.JARVIS.MainActivity:
+    android.widget.LinearLayout container -> b
+    android.widget.RelativeLayout layConnect -> c
+    android.widget.ImageView mImgConnectionStatus -> d
+    android.widget.TextView btnHome -> e
+    android.widget.TextView btnGroup -> f
+    android.widget.TextView btnSetup -> g
+    android.widget.TextView btnAbout -> h
+    android.content.Intent intentHome -> i
+    android.content.Intent intentGroup -> j
+    android.content.Intent intentSetup -> k
+    android.content.Intent intentAbout -> l
+    android.view.View viewHome -> m
+    android.view.View viewGroup -> n
+    android.view.View viewSetup -> o
+    android.view.View viewAbout -> p
+    android.net.wifi.WifiManager wifiManager -> q
+    android.app.ProgressDialog pdOpenWifi -> r
+    com.carreygroup.JARVIS.MyApplication mApp -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPause() -> onPause
+    void onResume() -> onResume
+    void onConnected(com.carreygroup.JARVIS.TCP) -> a
+    void onDisconnected() -> a
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    android.widget.RelativeLayout access$0(com.carreygroup.JARVIS.MainActivity) -> a
+    android.view.View access$1(com.carreygroup.JARVIS.MainActivity) -> b
+    android.content.Intent access$2(com.carreygroup.JARVIS.MainActivity) -> c
+    void access$3(com.carreygroup.JARVIS.MainActivity,android.view.View) -> a
+    android.widget.LinearLayout access$4(com.carreygroup.JARVIS.MainActivity) -> d
+    android.widget.TextView access$5(com.carreygroup.JARVIS.MainActivity) -> e
+    android.widget.TextView access$6(com.carreygroup.JARVIS.MainActivity) -> f
+    android.widget.TextView access$7(com.carreygroup.JARVIS.MainActivity) -> g
+    android.widget.TextView access$8(com.carreygroup.JARVIS.MainActivity) -> h
+    android.view.View access$9(com.carreygroup.JARVIS.MainActivity) -> i
+    android.content.Intent access$10(com.carreygroup.JARVIS.MainActivity) -> j
+    void access$11(com.carreygroup.JARVIS.MainActivity,android.view.View) -> b
+    android.view.View access$12(com.carreygroup.JARVIS.MainActivity) -> k
+    android.content.Intent access$13(com.carreygroup.JARVIS.MainActivity) -> l
+    void access$14(com.carreygroup.JARVIS.MainActivity,android.view.View) -> c
+    android.view.View access$15(com.carreygroup.JARVIS.MainActivity) -> m
+    android.content.Intent access$16(com.carreygroup.JARVIS.MainActivity) -> n
+    void access$17(com.carreygroup.JARVIS.MainActivity,android.view.View) -> d
+com.carreygroup.JARVIS.MainActivity$1 -> com.carreygroup.JARVIS.g:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.MainActivity$2 -> com.carreygroup.JARVIS.i:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.MainActivity$OnAboutClicked -> com.carreygroup.JARVIS.u:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.MainActivity$OnConnectClicked -> com.carreygroup.JARVIS.al:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.MainActivity$OnGroupClicked -> com.carreygroup.JARVIS.l:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.MainActivity$OnHomeClicked -> com.carreygroup.JARVIS.ag:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.MainActivity$OnSetupClicked -> com.carreygroup.JARVIS.s:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.MainActivity$OnStatusClicked -> com.carreygroup.JARVIS.h:
+    com.carreygroup.JARVIS.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.MyApplication -> com.carreygroup.JARVIS.MyApplication:
+    com.carreygroup.JARVIS.TCP mTcp -> a
+    java.lang.String mHost -> b
+    android.content.SharedPreferences mConfig -> c
+    java.util.ArrayList mLines -> d
+    java.util.ArrayList mGroups -> e
+    void onCreate() -> onCreate
+    void saveConfig(com.carreygroup.JARVIS.ItemInfo) -> a
+    void saveGroup(com.carreygroup.JARVIS.GroupInfo) -> a
+    void deleteGroup(com.carreygroup.JARVIS.GroupInfo) -> b
+    void saveHostAddress(java.lang.String) -> a
+    java.lang.String getHost() -> a
+    java.util.ArrayList getLines() -> b
+    java.util.ArrayList getGroups() -> c
+    com.carreygroup.JARVIS.TCP getConnection() -> d
+    void addConnectionListener(com.carreygroup.JARVIS.TCP$ConnectionListener) -> a
+    boolean makeConnection(java.lang.String) -> b
+com.carreygroup.JARVIS.Packet -> com.carreygroup.JARVIS.ak:
+    byte bBegin -> a
+    byte[] baAddress -> b
+    byte bStart -> c
+    byte bCtrlCode -> d
+    byte bDataLength -> e
+    byte[] baData -> f
+    byte bVirifyCode -> g
+    byte bEnd -> h
+    byte[] getData() -> a
+    void switchLine(byte,boolean) -> a
+    void switchAll(boolean) -> a
+    void fetchLineStatus() -> b
+    byte[] toByteArray() -> c
+    int getVerifyCode() -> d
+com.carreygroup.JARVIS.Protocol -> com.carreygroup.JARVIS.m:
+    java.lang.String reverse$7a1ba7c4(java.lang.String) -> a
+    char[] fetchLineStatus(com.carreygroup.JARVIS.TCP) -> a
+    boolean switchLine(com.carreygroup.JARVIS.TCP,byte,boolean) -> a
+com.carreygroup.JARVIS.Protocol$ParseDataException -> com.carreygroup.JARVIS.ad:
+    com.carreygroup.JARVIS.Protocol this$0 -> a
+    java.lang.String toString() -> toString
+com.carreygroup.JARVIS.Protocol$SendDataException -> com.carreygroup.JARVIS.v:
+    com.carreygroup.JARVIS.Protocol this$0 -> a
+    java.lang.String toString() -> toString
+com.carreygroup.JARVIS.SetupActivity -> com.carreygroup.JARVIS.SetupActivity:
+    java.util.ArrayList mLines -> a
+    android.widget.ListView lvConfig -> b
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter mAdapter -> c
+    com.carreygroup.JARVIS.MyApplication mApp -> d
+    void onCreate(android.os.Bundle) -> onCreate
+    java.util.ArrayList access$0(com.carreygroup.JARVIS.SetupActivity) -> a
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter access$1(com.carreygroup.JARVIS.SetupActivity) -> b
+    com.carreygroup.JARVIS.MyApplication access$2(com.carreygroup.JARVIS.SetupActivity) -> c
+com.carreygroup.JARVIS.SetupActivity$LineItemClicked -> com.carreygroup.JARVIS.t:
+    com.carreygroup.JARVIS.ItemInfo mItem -> b
+    int mIconId -> c
+    com.carreygroup.JARVIS.SetupActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void doSetup(int) -> a
+    void access$0(com.carreygroup.JARVIS.SetupActivity$LineItemClicked,int) -> a
+    com.carreygroup.JARVIS.ItemInfo access$1(com.carreygroup.JARVIS.SetupActivity$LineItemClicked) -> a
+    int access$2(com.carreygroup.JARVIS.SetupActivity$LineItemClicked) -> b
+com.carreygroup.JARVIS.SetupActivity$LineItemClicked$1 -> com.carreygroup.JARVIS.c:
+    com.carreygroup.JARVIS.SetupActivity$LineItemClicked this$1 -> a
+    void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
+com.carreygroup.JARVIS.SetupActivity$LineItemClicked$2 -> com.carreygroup.JARVIS.d:
+    com.carreygroup.JARVIS.SetupActivity$LineItemClicked this$1 -> a
+    android.widget.EditText val$edtName -> b
+    int val$pos -> c
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.SetupActivity$LineItemClicked$3 -> com.carreygroup.JARVIS.f:
+    com.carreygroup.JARVIS.SetupActivity$LineItemClicked this$1 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.SetupActivity$MyAdapter -> com.carreygroup.JARVIS.n:
+    android.view.LayoutInflater mInflater -> b
+    com.carreygroup.JARVIS.SetupActivity this$0 -> a
+    long getItemId(int) -> getItemId
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.carreygroup.JARVIS.SetupActivity$MyAdapter$1 -> com.carreygroup.JARVIS.a:
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter this$1 -> a
+    int val$position -> b
+    void onClick(android.view.View) -> onClick
+com.carreygroup.JARVIS.SetupActivity$MyAdapter$2 -> com.carreygroup.JARVIS.b:
+    com.carreygroup.JARVIS.ItemInfo mItem -> b
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter this$1 -> a
+    int val$position -> c
+    void onClick(android.view.View) -> onClick
+    com.carreygroup.JARVIS.ItemInfo access$0(com.carreygroup.JARVIS.SetupActivity$MyAdapter$2) -> a
+com.carreygroup.JARVIS.SetupActivity$MyAdapter$2$1 -> com.carreygroup.JARVIS.y:
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter$2 this$2 -> a
+    android.widget.TimePicker val$tpOn -> b
+    android.widget.TimePicker val$tpOff -> c
+    int val$position -> d
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.SetupActivity$MyAdapter$2$2 -> com.carreygroup.JARVIS.w:
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter$2 this$2 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.carreygroup.JARVIS.SetupActivity$MyAdapter$ViewHolder -> com.carreygroup.JARVIS.x:
+    android.widget.TextView Name -> a
+    android.widget.ImageView Icon -> b
+    android.widget.TextView TimerOn -> c
+    android.widget.TextView TimerOff -> d
+    android.widget.TextView SetBasic -> e
+    android.widget.TextView SetTimer -> f
+    com.carreygroup.JARVIS.SetupActivity$MyAdapter this$1 -> g
+com.carreygroup.JARVIS.TCP -> com.carreygroup.JARVIS.q:
+    java.nio.channels.SocketChannel mSocket -> a
+    java.net.SocketAddress mAddress -> b
+    java.util.ArrayList mConnListeners -> c
+    boolean mConnected -> d
+    void addListener(com.carreygroup.JARVIS.TCP$ConnectionListener) -> a
+    void connect(java.lang.String) -> a
+    byte[] Send(com.carreygroup.JARVIS.Packet) -> a
+    void close() -> a
+    boolean isConnected() -> b
+    void notifyDisconnected() -> c
+com.carreygroup.JARVIS.TCP$ConnectionListener -> com.carreygroup.JARVIS.j:
+    void onConnected(com.carreygroup.JARVIS.TCP) -> a
+    void onDisconnected() -> a

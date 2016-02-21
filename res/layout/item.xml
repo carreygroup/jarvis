@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"        
+        android:layout_height="fill_parent"
+        android:padding="5dip"
+        android:descendantFocusability="blocksDescendants">
+		<ImageView android:id="@+id/Icon"
+	        android:layout_width="48dip"	        
+	        android:layout_height="48dip"
+	        android:layout_marginRight="5dp"
+	        android:focusable="false"
+	        android:src="@drawable/icon"/>   
+        <TextView android:id="@+id/ItemName" 
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_toRightOf="@id/Icon"
+        	android:layout_marginTop="-5dp"
+        	android:textSize="20dp"   
+            android:textColor="#333333" 
+            android:focusable="false"/>	
+<!--         <TextView android:id="@+id/TimerOn" 
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_toRightOf="@id/Icon"
+            android:textColor="#555555"
+            android:layout_below="@id/Name"
+            android:focusable="false"/>
+        <TextView android:id="@+id/TimerOff" 
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_toRightOf="@id/Icon"
+        	android:layout_below="@id/TimerOn"
+            android:textColor="#555555"
+            android:focusable="false"/>    -->                     
+            
+        <RelativeLayout android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" 
+            android:layout_marginRight="5dip">            
+            <TextView android:id="@+id/ItemConfig"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center_horizontal"
+                android:text=" 项目设置  "
+                android:textColor="#ffffff" 
+                android:background="@drawable/bg_btn_green"/>
+            <TextView android:id="@+id/RemoveItem"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@id/ItemConfig"
+                android:gravity="center_horizontal"
+                android:text=" 删除此项"
+                android:textColor="#ffffff"
+                android:background="@drawable/bg_btn_red"/>
+        </RelativeLayout>                     
+</RelativeLayout>

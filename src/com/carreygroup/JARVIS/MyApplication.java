@@ -33,24 +33,33 @@ import android.net.wifi.WifiManager.MulticastLock;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Handler;
+
+import org.apache.http.conn.util.InetAddressUtils;
 
 public class MyApplication extends Application
 {
 	private Demon                           demon=null;
 	private String							mHost			= "192.168.1.255";
-	private int                             mPort           = 8080;
+	private String                          mPort           = "8080";
 	private int                             mEthent         = 1;
 	
     private SharedPreferences				mConfig			= null;
@@ -166,7 +175,7 @@ public class MyApplication extends Application
         	}
         }
         mHost = mConfig.getString(KEY_HOST_IP, "192.168.1.255");
-        mPort=  mConfig.getInt(KEY_HOST_PORT, 8080);
+        mPort=  mConfig.getString(KEY_HOST_PORT, "8080");
         mEthent = mConfig.getInt(KEY_ETHNETMODE, 0);
     }
     public void PushDevIDs(Byte devid)
@@ -249,10 +258,10 @@ public class MyApplication extends Application
     	return mHost;
     }
  
-    public void saveHostPort(int port)
+    public void saveHostPort(String port)
     {
     	mPort=port;
-    	mConfig.edit().putInt(KEY_HOST_PORT, port).commit();
+    	mConfig.edit().putString(KEY_HOST_PORT, port).commit();
     }
   
     public int getEthnetMode()
@@ -270,7 +279,7 @@ public class MyApplication extends Application
     	mConfig.edit().putInt(KEY_ETHNETMODE, mEthent).commit();
     }
     
-    public int getPort()
+    public String getPort()
     {
     	return mPort;
     }
@@ -347,7 +356,7 @@ public class MyApplication extends Application
         		if(m_ReceiverThread!=null) m_ReceiverThread.interrupt();
         		if(m_DetectorTHread!=null) m_DetectorTHread.interrupt();
 
-        		if(getEthnetMode()==Ethnet.TCP)
+        		if((getEthnetMode()==Ethnet.TCP)||(getEthnetMode()==Ethnet.P2P))
         		{
         			m_DetectorTHread = new Thread(m_Detector);
         			m_ReceiverThread = new Thread(m_TCP_Receiver); 
@@ -514,5 +523,4 @@ public class MyApplication extends Application
 
 		}
 	};
-
 }

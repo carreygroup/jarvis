@@ -33,6 +33,7 @@ public class Ethnet
 	
 	public static final byte TCP	   = 0x00; //TCP模式
 	public static final byte UDP       = 0x01; //UDP模式
+	public static final byte P2P       = 0x02; //P2P模式
 	
 	public static final int THREAD_TIMEOUT  = 1000; //线程超时
 	public static final int SELECT_TIMEOUT  = 500; //线程超时

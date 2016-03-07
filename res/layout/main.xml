@@ -90,19 +90,28 @@
 			        android:layout_marginLeft="10dp"
 			        android:layout_marginRight="10dp"
 			        android:tag="0"
-			        android:text="TCP方式" />
+			        android:text="TCP" />
 
 			    <RadioButton
 			        android:id="@+id/rbUDP"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:layout_marginLeft="10dp"
-			        android:layout_marginRight="50dp"
+			        android:layout_marginRight="10dp"
 			        android:tag="1"
-			        android:text="UDP方式" />
+			        android:text="UDP" />
+			    <RadioButton
+			        android:id="@+id/rbP2P"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="10dp"
+			        android:layout_marginRight="10dp"
+			        android:tag="2"
+			        android:text="P2P" />
 			</RadioGroup>  
 				
-			<TextView android:layout_width="fill_parent"
+			<TextView  android:id="@+id/lblIP"
+			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
 			    android:layout_marginRight="50dip"
 			    android:textColor="@color/red"
@@ -123,7 +132,8 @@
 	        	android:digits="0123456789."
 	        	android:text="@string/connect_desc">
 		    </EditText> -->
-		    <TextView android:layout_width="fill_parent"
+		    <TextView android:id="@+id/lblPort" 
+		        android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
 			    android:layout_marginRight="50dip"
 			    android:textColor="@color/red"
@@ -141,7 +151,6 @@
 		        	android:layout_height="wrap_content"
 		        	android:layout_marginLeft="10dip"
 		        	android:layout_marginRight="50dip"
-		        	android:inputType="number"
 		        	android:text="@string/port_desc">
 			    </EditText>		    
 		       	<Button android:id="@+id/btnConnect"

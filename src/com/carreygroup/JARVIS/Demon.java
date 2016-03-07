@@ -42,12 +42,20 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 
+import org.apache.http.conn.util.InetAddressUtils;
+
+import android.R.string;
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.vveye.T2u;
 
 public class Demon 
 {
@@ -60,6 +68,8 @@ public class Demon
 	private ArrayList<ConnectionListener>	mConnListeners	= new ArrayList<ConnectionListener>();
     private PrintWriter                     mPrintWriterClient      = null;    
 
+    private static int              p2p_Port=0;
+    T2u t2u=new T2u();
     /**
      * 网络连接状态观察者
      * @author firefish
@@ -232,7 +242,7 @@ public class Demon
 	
 	public boolean Connected()
 	{
-		if(Ethnet_Mode==Ethnet.TCP)
+		if((Ethnet_Mode==Ethnet.TCP) || (Ethnet_Mode==Ethnet.P2P))
 		{
 			if(mSocket==null) 
 				return false;
@@ -242,8 +252,7 @@ public class Demon
 		
 		if(Ethnet_Mode==Ethnet.UDP)
 		{
-			if(mReceviedSocket!=null) 
-				return true;
+			if(mReceviedSocket!=null) return true;
 		}
 		return false;
 	}
@@ -257,12 +266,25 @@ public class Demon
 	{
 		return Ethnet_Mode;
 	}*/
-    /******************************TCP******************************/
-    public boolean Connection(byte mode,String host,int port)
+    /******************************TCP
+     * @throws UnknownHostException ******************************/
+    public boolean Connection(byte mode,String argv1,String  argv2) throws UnknownHostException
     {
     	Ethnet_Mode=mode;
+    	if(Ethnet_Mode==Ethnet.P2P)
+    	{
+    		P2PConnect(argv1,argv2);
+    		
+    	}
+    	else
     	if(Ethnet_Mode==Ethnet.TCP)
     	{
+        	//如果是域名,将域名转换为IP地址
+    		java.net.InetAddress x;
+    		x = java.net.InetAddress.getByName(argv1);
+    		String host = x.getHostAddress();//得到字符串形式的ip地址		
+    		
+    		int port = Integer.valueOf(argv2);
 	    	try 
 	    	{
 	    		mSocket = new Socket();
@@ -282,9 +304,15 @@ public class Demon
 			// 开启线程定时发送连接检测 
 			// new Thread(new ActiveTest(mSocket.socket())).start();
     	}
-    	
+    	else
     	if(Ethnet_Mode==Ethnet.UDP)
     	{
+        	//如果是域名,将域名转换为IP地址
+    		java.net.InetAddress x;
+    		x = java.net.InetAddress.getByName(argv1);
+    		String host = x.getHostAddress();//得到字符串形式的ip地址		
+    		int port = Integer.valueOf(argv2);
+    		
     		mAddress = new InetSocketAddress(host, port);    		
     		try 
     		{
@@ -314,7 +342,7 @@ public class Demon
     public boolean Send(Packet p) throws IOException
     {
     	boolean ret=false;
-    	if(Ethnet_Mode==Ethnet.TCP)
+    	if((Ethnet_Mode==Ethnet.TCP) || (Ethnet_Mode==Ethnet.P2P))
     	{
 	    	ByteBuffer bytebufOut = ByteBuffer.allocate(Ethnet.BUFFER_SIZE); 
 	    	bytebufOut = ByteBuffer.wrap(p.toByteArray()); 
@@ -345,7 +373,7 @@ public class Demon
     
     public void Close() throws IOException
     {
-    	if(Ethnet_Mode==Ethnet.TCP)
+    	if((Ethnet_Mode==Ethnet.TCP) || (Ethnet_Mode==Ethnet.P2P))
     	{
 	    	mPrintWriterClient.close();
 	    	mPrintWriterClient=null;
@@ -359,6 +387,17 @@ public class Demon
     		mReceviedSocket.close();
     		mSendPSocket=null;
     		mReceviedSocket=null;
+    	}
+    	
+    	if(Ethnet_Mode==Ethnet.P2P)
+    	{
+			// 关闭端口
+			if (p2p_Port > 0)
+			{
+				T2u.DelPort((char) p2p_Port);
+			}	
+//			 释放资源
+			T2u.Exit();	
     	}
     	mAddress=null;
 		notifyDisconnected();       
@@ -445,4 +484,214 @@ public class Demon
 		}  
 	}*/
 	/******************************UDP******************************/
+    /**
+     * Get IP address from first non-localhost interface
+     * @param ipv4  true=return ipv4, false=return ipv6
+     * @return  address or empty string
+     */
+    public static String getLoaclIPAddress(boolean useIPv4) 
+    {
+        try 
+        {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) 
+            {
+                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) 
+                {
+                    if (!addr.isLoopbackAddress()) 
+                    {
+                        String sAddr = addr.getHostAddress().toUpperCase();
+                        boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr); 
+                        if (useIPv4) 
+                        {
+                            if (isIPv4) 
+                                return sAddr;
+                        } 
+                        else 
+                        {
+                            if (!isIPv4) 
+                            {
+                                int delim = sAddr.indexOf('%'); // drop ip6 port suffix
+                                return delim<0 ? sAddr : sAddr.substring(0, delim);
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        catch (Exception ex) { } // for now eat exceptions
+        return "";
+    }
+    
+	// P2P连接
+	// 连接
+		public boolean P2PConnect(String UUID,String PWD) 
+		{
+			int portstatus = 0;
+			int intWaitTime = 0;
+			// 设备ID
+			if (UUID.length() == 0) 
+			{
+				Log.e("_DEBUG","设备ID空");
+				return false;
+			}
+
+			// 密码
+			if (PWD.length() == 0) 
+			{
+				Log.e("_DEBUG","密码空");
+				return false;
+			}
+			
+			Log.v("_DEBUG","UUID:"+UUID+" Password:"+PWD);
+			/*
+			//获取SharedPreferences对象
+	        SharedPreferences sharedPre=getSharedPreferences("config", Context.MODE_PRIVATE);
+	        //获取Editor对象
+	        Editor editor=sharedPre.edit();
+	        //设置参数
+	        editor.putString("username", strUUID);
+	        editor.putString("password", strPwd);
+	        //提交
+	        editor.commit();
+			 */
+			// -------------SDK初始化------------------------
+			try 
+			{
+				T2u.Init("nat.vveye.net", (char) 8000, "");
+			} 
+			catch (Exception e) 
+			{
+				//Toast.makeText(mHomeActivity, "SDK初始化失败", Toast.LENGTH_SHORT).show();
+				Log.e("_DEBUG","SDK初始化失败");
+				return false;
+			}
+
+			// ---------搜索本地设备-------------------------
+			byte[] result = new byte[1500];
+			int num = T2u.Search(result);
+			String tmp;
+			Log.v("_DEBUG","T2u.Search:" + num);
+			if (num > 0) 
+			{
+				tmp = new String(result);
+				Log.v("_DEBUG","Device:" + tmp);
+
+			} 
+			else 
+			{
+				//Toast.makeText(mHomeActivity, "没有寻找到设备", Toast.LENGTH_SHORT).show();				
+			}
+			// ----------------等待上线---------------------
+
+			while (T2u.Status() == 0) 
+			{
+				SystemClock.sleep(1000);
+				intWaitTime += 1;
+
+				Log.v("_DEBUG","T2u.Status=" + T2u.Status());
+				if (intWaitTime > 10) 
+				{
+					break;
+				}
+			}
+
+			Log.v("_DEBUG","T2u.status -> " + T2u.Status());
+
+			// -------------------建立 到本地端口映射--------------------
+			if (T2u.Status() == 1) 
+			{
+				int ret;
+				// ---------------查询设备是否在线-----------------
+				ret = T2u.Query(UUID);
+				Log.v("_DEBUG","T2u.Query:" + UUID + " -> " + ret);
+				if (ret > 0) 
+				{
+					// ******************本机IP*********************
+					// String strIP = Utils.getIPAddress(true);
+					// setTitle("IP:" + strIP);
+					// --------------创建本地映射端口-----------------
+					p2p_Port = T2u.AddPortV3(UUID, PWD, "127.0.0.1", (char)8080,(char)0);
+					Log.v("_DEBUG","T2u.add_port -> port:" + p2p_Port);
+
+					while(portstatus==0)
+					{
+						SystemClock.sleep(1000);
+						
+						portstatus=T2u.PortStatus((char)p2p_Port);
+						Log.v("_DEBUG","portstatus="+portstatus);
+						if(portstatus==1)
+						{
+							Log.v("_DEBUG","已与远端设备连通");
+							//return true;
+						}else if(portstatus==0)
+						{
+							Log.v("_DEBUG","正在建立连接......");
+						}else if(portstatus==-1)
+						{
+							//Toast.makeText(mHomeActivity, "未找到设备", Toast.LENGTH_SHORT).show();
+							Log.e("_DEBUG","未找到设备");
+							T2u.Exit();
+							return false;
+						}else if(portstatus==-5)
+						{
+							//Toast.makeText(mHomeActivity, "密码错误", Toast.LENGTH_SHORT).show();
+							Log.e("_DEBUG","密码错误");
+							T2u.Exit();
+							return false;
+						}
+					}
+				} 
+				else 
+				{
+					//Toast.makeText(mHomeActivity, "设备不在线", Toast.LENGTH_SHORT).show();
+					return false;
+				}
+			} 
+			else 
+			{
+				//Toast.makeText(mHomeActivity, "设备不在线", Toast.LENGTH_SHORT).show();
+				return false;
+			}
+			// 判断端口号是否映射成功
+			if (!isNumeric(String.valueOf(p2p_Port))) 
+			{
+				return false;
+			}
+			// -------------------连接成功,开关按钮置于活动状态--------------------
+			String mHost = getLoaclIPAddress(true);
+			Log.i("_DEBUG", "IP:" + mHost + "," + "Port:" + p2p_Port);
+			
+	    	try 
+	    	{
+	    		mSocket = new Socket();
+	    		mAddress = new InetSocketAddress(mHost, p2p_Port);
+				mSocket.connect(mAddress, 5000);			
+				mPrintWriterClient = new PrintWriter(mSocket.getOutputStream(), true);
+				if(mSocket.isConnected())
+					Log.v("_DEBUG","Connected!");
+				else 
+					Log.v("_DEBUG","No Connected!");
+				return true;
+			} 
+	    	catch (IOException e) 
+	    	{
+				// TODO Auto-generated catch block	    		
+				e.printStackTrace();
+				return false;
+			}
+		}
+			// 用JAVA自带的函数
+			public static boolean isNumeric(String str) 
+			{
+				for (int i = str.length(); --i >= 0;) 
+				{
+					if (!Character.isDigit(str.charAt(i))) 
+					{
+						return false;
+					}
+				}
+				return true;
+			}
 }

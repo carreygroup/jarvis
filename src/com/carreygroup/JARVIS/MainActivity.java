@@ -52,8 +52,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-
-
 //import com.mobclick.android.MobclickAgent;
 import com.carreygroup.JARVIS.Demon.ConnectionListener;
 
@@ -221,12 +219,19 @@ public class MainActivity extends ActivityGroup implements ConnectionListener
     	        {
     		        case 0:
     		        	ethnetgroup.check(R.id.rbTCP);
+    		        	((EditText)findViewById(R.id.edtPort)).setInputType(0x90);//密码明文显示
     		        	break;
     		        case 1:
     		        	ethnetgroup.check(R.id.rbUDP);
+    		        	((EditText)findViewById(R.id.edtPort)).setInputType(0x90);//密码明文显示
+    		        	break;
+    		        case 2:
+    		        	ethnetgroup.check(R.id.rbP2P);
+    		        	((EditText)findViewById(R.id.edtPort)).setInputType(0x81);//密码隐藏
     		        	break;
     	        	default:
     	        		ethnetgroup.check(R.id.rbTCP);
+    	        		((EditText)findViewById(R.id.edtPort)).setInputType(0x90);//密码明文显示
     		        	break;	        
     	        }
     	        
@@ -237,6 +242,24 @@ public class MainActivity extends ActivityGroup implements ConnectionListener
     				{
     					RadioButton ethnetgroup = (RadioButton)group.findViewById(checkedId);
     					int ethmode = Integer.valueOf((String)ethnetgroup.getTag());
+    					
+						TextView lblIP=(TextView)findViewById(R.id.lblIP);
+    					TextView lblPort=(TextView)findViewById(R.id.lblPort);
+		
+    					if(ethmode==Ethnet.P2P)
+    					{
+        					lblIP.setText("用户名:");
+        					lblPort.setText("密码:");
+        					((EditText)findViewById(R.id.edtPort)).setInputType(0x81);//密码隐藏
+    					}
+    					else 
+    					{
+        					lblIP.setText("以太网地址:");
+        					lblPort.setText("端口:");
+        					((EditText)findViewById(R.id.edtIP)).setText("");
+        					((EditText)findViewById(R.id.edtPort)).setText("");
+        					((EditText)findViewById(R.id.edtPort)).setInputType(0x90);//密码明文显示
+						}
     					mApp.setEthnetMode(ethmode);
     				}
     	        	
@@ -251,19 +274,22 @@ public class MainActivity extends ActivityGroup implements ConnectionListener
     		{
     			RadioButton bTCP = (RadioButton)ethnetgroup.findViewById(R.id.rbTCP);
     			RadioButton bUDP = (RadioButton)ethnetgroup.findViewById(R.id.rbUDP);
+    			RadioButton bP2P = (RadioButton)ethnetgroup.findViewById(R.id.rbP2P);
     			
     			bTCP.setClickable(false);
     			bUDP.setClickable(false);
-    			
+    			bP2P.setClickable(false);
     			btnConnect.setText("断开");
     		}
     		else
     		{
     			RadioButton bTCP = (RadioButton)ethnetgroup.findViewById(R.id.rbTCP);
     			RadioButton bUDP = (RadioButton)ethnetgroup.findViewById(R.id.rbUDP);
+    			RadioButton bP2P = (RadioButton)ethnetgroup.findViewById(R.id.rbP2P);
     			
     			bTCP.setClickable(true);
     			bUDP.setClickable(true);
+    			bP2P.setClickable(true);
     			btnConnect.setText("连接");
     		}
     	}
@@ -295,22 +321,18 @@ public class MainActivity extends ActivityGroup implements ConnectionListener
     		{
 				try 
 				{
-					//如果是域名,将域名转换为IP地址
-					java.net.InetAddress x;
-					String strIpAddr = ((EditText)findViewById(R.id.edtIP)).getText().toString();  
-					x = java.net.InetAddress.getByName(strIpAddr);
-					String ip = x.getHostAddress();//得到字符串形式的ip地址
+					String strIpAddr = ((EditText)findViewById(R.id.edtIP)).getText().toString();  					
 					// 建立连接    			  	
-					int port = Integer.valueOf(((EditText)findViewById(R.id.edtPort)).getText().toString());
+					String Argv2 = ((EditText)findViewById(R.id.edtPort)).getText().toString();
 					
-		    		boolean ret=mApp.getDemon().Connection((byte)mApp.getEthnetMode(),ip,port);
+		    		boolean ret=mApp.getDemon().Connection((byte)mApp.getEthnetMode(),strIpAddr,Argv2);
 		    		if(ret == false)
 		    		{
 						Toast.makeText(MainActivity.this, "连接控制器失败！", Toast.LENGTH_SHORT).show();
 						return;
 					}
 		    		mApp.saveHostIP(strIpAddr);
-		    		mApp.saveHostPort(port);
+		    		mApp.saveHostPort(Argv2);
 		    		mApp.saveEthnetMode();
 				}
 				catch (UnknownHostException e) 
